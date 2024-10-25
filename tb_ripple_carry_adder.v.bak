@@ -1,0 +1,20 @@
+module tb_ripple_carry_adder;
+    reg [3:0] A; // Define 4-bit input for a
+    reg [3:0] B; // Define 4-bit input for b
+    wire [3:0] Sum; // Define 4-bit output sum
+    wire C_out; // Define carry-out as a single bit
+
+    // Instantiate the 4-bit ripple carry adder, map all the I/O ports with the DUT
+    ripple_carry_adder uut (.A(A), .B(B), .C_out(C_out), .Sum(Sum));
+
+    initial begin
+        // Initialize the pins with different combinations of inputs
+        a = 4'b0001; b = 4'b0011; #100;
+        a = 4'b1111; b = 4'b1111; #100;
+        a = 4'b1010; b = 4'b0101; #100;
+        a = 4'b0000; b = 4'b1111; #100;
+        a = 4'b1100; b = 4'b1010; #100;
+
+        $finish; // End the simulation
+    end
+endmodule
